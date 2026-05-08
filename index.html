@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShadowRealm Online - MMORPG</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="screen active">
+    <div class="login-bg">
+      <div class="particles" id="particles"></div>
+      <div class="login-container">
+        <div class="logo-area">
+          <div class="logo-glow"></div>
+          <h1 class="game-title">SHADOW<span>REALM</span></h1>
+          <p class="game-subtitle">⚔ ONLINE ⚔</p>
+        </div>
+        <div class="login-form">
+          <div class="form-group">
+            <label>USUÁRIO</label>
+            <input type="text" id="username-input" placeholder="Digite seu nome de herói..." value="Herói">
+          </div>
+          <div class="form-group">
+            <label>SENHA</label>
+            <input type="password" id="password-input" placeholder="••••••••" value="12345">
+          </div>
+          <button class="btn-primary" id="login-btn">ENTRAR NO MUNDO</button>
+          <button class="btn-secondary" id="register-btn">CRIAR CONTA</button>
+        </div>
+        <div class="server-info">
+          <span class="server-dot"></span>
+          <span>Servidor: Yggdrasil | Online: 1.247</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARACTER SELECTION -->
+  <div id="char-select-screen" class="screen">
+    <div class="char-select-bg">
+      <h2 class="screen-title">SELECIONAR PERSONAGEM</h2>
+      <div class="char-slots">
+        <div class="char-slot active" data-slot="0">
+          <div class="char-preview" id="char-preview-0">
+            <canvas id="char-canvas-0" width="80" height="100"></canvas>
+          </div>
+          <div class="char-info">
+            <span class="char-name">Sem personagem</span>
+            <span class="char-class">-</span>
+            <span class="char-level">-</span>
+          </div>
+        </div>
+        <div class="char-slot" data-slot="1">
+          <div class="char-preview" id="char-preview-1">
+            <canvas id="char-canvas-1" width="80" height="100"></canvas>
+          </div>
+          <div class="char-info">
+            <span class="char-name">Sem personagem</span>
+            <span class="char-class">-</span>
+            <span class="char-level">-</span>
+          </div>
+        </div>
+        <div class="char-slot" data-slot="2">
+          <div class="char-preview" id="char-preview-2">
+            <canvas id="char-canvas-2" width="80" height="100"></canvas>
+          </div>
+          <div class="char-info">
+            <span class="char-name">Sem personagem</span>
+            <span class="char-class">-</span>
+            <span class="char-level">-</span>
+          </div>
+        </div>
+      </div>
+      <div class="char-select-buttons">
+        <button class="btn-primary" id="enter-world-btn">ENTRAR NO MUNDO</button>
+        <button class="btn-secondary" id="create-char-btn">CRIAR PERSONAGEM</button>
+        <button class="btn-danger" id="back-to-login-btn">VOLTAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARACTER CREATION -->
+  <div id="char-create-screen" class="screen">
+    <div class="char-create-bg">
+      <h2 class="screen-title">CRIAR PERSONAGEM</h2>
+      <div class="creation-layout">
+        <div class="creation-preview">
+          <canvas id="creation-canvas" width="150" height="200"></canvas>
+          <div class="char-name-input">
+            <input type="text" id="char-name-input" placeholder="Nome do personagem..." maxlength="16">
+          </div>
+        </div>
+        <div class="class-selection">
+          <h3>ESCOLHA SUA CLASSE</h3>
+          <div class="class-grid">
+            <div class="class-card selected" data-class="warrior">
+              <div class="class-icon">⚔️</div>
+              <div class="class-name">GUERREIRO</div>
+              <div class="class-desc">Mestre do combate corpo a corpo. Alto HP e defesa.</div>
+              <div class="class-stats">
+                <span>HP: ████████░░</span>
+                <span>ATK: ██████░░░░</span>
+                <span>DEF: ████████░░</span>
+                <span>MGC: ██░░░░░░░░</span>
+              </div>
+            </div>
+            <div class="class-card" data-class="mage">
+              <div class="class-icon">🔮</div>
+              <div class="class-name">MAGO</div>
+              <div class="class-desc">Poder arcano devastador. Mestre dos elementos.</div>
+              <div class="class-stats">
+                <span>HP: ████░░░░░░</span>
+                <span>ATK: ██████████</span>
+                <span>DEF: ██░░░░░░░░</span>
+                <span>MGC: ██████████</span>
+              </div>
+            </div>
+            <div class="class-card" data-class="archer">
+              <div class="class-icon">🏹</div>
+              <div class="class-name">ARQUEIRO</div>
+              <div class="class-desc">Precisão mortal à distância. Velocidade e agilidade.</div>
+              <div class="class-stats">
+                <span>HP: ██████░░░░</span>
+                <span>ATK: ████████░░</span>
+                <span>DEF: ████░░░░░░</span>
+                <span>MGC: ████░░░░░░</span>
+              </div>
+            </div>
+            <div class="class-card" data-class="shadow">
+              <div class="class-icon">🌑</div>
+              <div class="class-name">ASSASSINO</div>
+              <div class="class-desc">Sombras e velocidade. Poderes Solo Leveling.</div>
+              <div class="class-stats">
+                <span>HP: ████░░░░░░</span>
+                <span>ATK: ██████████</span>
+                <span>DEF: ████░░░░░░</span>
+                <span>MGC: ██████░░░░</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="creation-buttons">
+        <button class="btn-primary" id="confirm-create-btn">CRIAR PERSONAGEM</button>
+        <button class="btn-danger" id="cancel-create-btn">CANCELAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="game-screen" class="screen">
+    <div id="game-container"></div>
+    
+    <!-- HUD -->
+    <div id="hud">
+      <!-- Top Left: Player Info -->
+      <div id="player-info" class="hud-panel">
+        <div class="player-portrait">
+          <canvas id="portrait-canvas" width="50" height="50"></canvas>
+          <div class="level-badge" id="level-badge">1</div>
+        </div>
+        <div class="player-bars">
+          <div class="bar-row">
+            <span class="bar-label">HP</span>
+            <div class="bar hp-bar">
+              <div class="bar-fill" id="hp-fill" style="width:100%"></div>
+              <span class="bar-text" id="hp-text">100/100</span>
+            </div>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">MP</span>
+            <div class="bar mp-bar">
+              <div class="bar-fill" id="mp-fill" style="width:100%"></div>
+              <span class="bar-text" id="mp-text">100/100</span>
+            </div>
+          </div>
+          <div class="bar-row">
+            <span class="bar-label">EXP</span>
+            <div class="bar exp-bar">
+              <div class="bar-fill" id="exp-fill" style="width:0%"></div>
+              <span class="bar-text" id="exp-text">0/100</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rank Display -->
+      <div id="rank-display" class="hud-panel">
+        <span id="rank-text">Rank E</span>
+        <div id="rank-aura" class="rank-aura"></div>
+      </div>
+
+      <!-- Skill Bar -->
+      <div id="skill-bar" class="hud-panel">
+        <div class="skill-slot" data-key="Q" id="skill-q">
+          <div class="skill-icon" id="skill-icon-q">⚔</div>
+          <div class="skill-cd" id="skill-cd-q"></div>
+          <span class="skill-key">Q</span>
+        </div>
+        <div class="skill-slot" data-key="W" id="skill-w">
+          <div class="skill-icon" id="skill-icon-w">🌀</div>
+          <div class="skill-cd" id="skill-cd-w"></div>
+          <span class="skill-key">W</span>
+        </div>
+        <div class="skill-slot" data-key="E" id="skill-e">
+          <div class="skill-icon" id="skill-icon-e">⚡</div>
+          <div class="skill-cd" id="skill-cd-e"></div>
+          <span class="skill-key">E</span>
+        </div>
+        <div class="skill-slot" data-key="R" id="skill-r">
+          <div class="skill-icon" id="skill-icon-r">💀</div>
+          <div class="skill-cd" id="skill-cd-r"></div>
+          <span class="skill-key">R</span>
+        </div>
+        <div class="skill-slot" data-key="F" id="skill-f">
+          <div class="skill-icon" id="skill-icon-f">🐾</div>
+          <div class="skill-cd" id="skill-cd-f"></div>
+          <span class="skill-key">F</span>
+        </div>
+      </div>
+
+      <!-- Top Right: Minimap -->
+      <div id="minimap-container" class="hud-panel">
+        <canvas id="minimap" width="150" height="150"></canvas>
+        <div id="minimap-label">MAPA</div>
+      </div>
+
+      <!-- Pet Display -->
+      <div id="pet-display" class="hud-panel" id="pet-panel">
+        <div class="pet-portrait">
+          <canvas id="pet-canvas" width="40" height="40"></canvas>
+        </div>
+        <div class="pet-info">
+          <span id="pet-name">Sem pet</span>
+          <div class="bar hp-bar" style="width:80px">
+            <div class="bar-fill" id="pet-hp-fill" style="width:100%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mount Button -->
+      <div id="mount-btn-container" class="hud-panel">
+        <button id="mount-btn" class="mount-btn" title="Montaria (M)">🐺</button>
+        <span>Montaria</span>
+      </div>
+
+      <!-- Inventory Button -->
+      <div id="inventory-btn-container" class="hud-panel">
+        <button id="inv-btn" class="inv-btn" title="Inventário (I)">🎒</button>
+        <span>Inventário</span>
+      </div>
+
+      <!-- Zone Name -->
+      <div id="zone-name" class="hud-panel">
+        <span id="zone-text">Cidade de Início</span>
+      </div>
+
+      <!-- Chat -->
+      <div id="chat-panel" class="hud-panel">
+        <div id="chat-messages"></div>
+        <div class="chat-input-row">
+          <input type="text" id="chat-input" placeholder="Pressione Enter para falar..." maxlength="100">
+        </div>
+      </div>
+
+      <!-- Combat Log -->
+      <div id="combat-log" class="hud-panel">
+        <div id="log-messages"></div>
+      </div>
+    </div>
+
+    <!-- Inventory Overlay -->
+    <div id="inventory-overlay" class="overlay hidden">
+      <div class="overlay-panel">
+        <div class="overlay-header">
+          <h3>⚔ INVENTÁRIO</h3>
+          <button class="close-btn" id="close-inv">✕</button>
+        </div>
+        <div class="inv-layout">
+          <div class="equipment-slots">
+            <h4>EQUIPAMENTO</h4>
+            <div class="equip-grid">
+              <div class="equip-slot" data-slot="helmet" title="Capacete">🪖</div>
+              <div class="equip-slot" data-slot="weapon" title="Arma">⚔️</div>
+              <div class="equip-slot" data-slot="armor" title="Armadura">🛡️</div>
+              <div class="equip-slot" data-slot="boots" title="Botas">👢</div>
+              <div class="equip-slot" data-slot="ring" title="Anel">💍</div>
+              <div class="equip-slot" data-slot="amulet" title="Amuleto">📿</div>
+            </div>
+          </div>
+          <div class="inventory-grid" id="inv-grid">
+          </div>
+        </div>
+        <div class="char-stats-panel">
+          <h4>ATRIBUTOS</h4>
+          <div id="char-stats-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skill Tree Overlay -->
+    <div id="skilltree-overlay" class="overlay hidden">
+      <div class="overlay-panel wide">
+        <div class="overlay-header">
+          <h3>⚡ ÁRVORE DE HABILIDADES</h3>
+          <button class="close-btn" id="close-skills">✕</button>
+        </div>
+        <div id="skill-tree-content"></div>
+        <div class="skill-points-info">Pontos disponíveis: <span id="skill-points">0</span></div>
+      </div>
+    </div>
+
+    <!-- Notification Area -->
+    <div id="notifications"></div>
+
+    <!-- Damage Numbers Canvas -->
+    <canvas id="dmg-canvas" style="position:absolute;top:0;left:0;pointer-events:none;z-index:100;"></canvas>
+  </div>
+
+  <!-- Load scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+  <script src="js/utils/constants.js"></script>
+  <script src="js/utils/helpers.js"></script>
+  <script src="js/systems/particles.js"></script>
+  <script src="js/entities/player.js"></script>
+  <script src="js/entities/enemy.js"></script>
+  <script src="js/entities/pet.js"></script>
+  <script src="js/entities/npc.js"></script>
+  <script src="js/systems/combat.js"></script>
+  <script src="js/systems/inventory.js"></script>
+  <script src="js/systems/skills.js"></script>
+  <script src="js/systems/loot.js"></script>
+  <script src="js/ui/hud.js"></script>
+  <script src="js/ui/minimap.js"></script>
+  <script src="js/ui/notifications.js"></script>
+  <script src="js/scenes/BootScene.js"></script>
+  <script src="js/scenes/GameScene.js"></script>
+  <script src="js/scenes/DungeonScene.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
